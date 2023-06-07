@@ -27,9 +27,9 @@ function moviesAverageOfDirector(array, director) {
 
 // Exercise 4:  Alphabetic order by title 
 function orderAlphabetically(array) {
-  const MoviesCopy = [...array]; //operador de propagación(no modifica array original)
-  console.log("EXERCICE 4 ->", MoviesCopy);
-  return MoviesCopy
+  const moviesCopy = [...array]; //operador de propagación(spread)=>(no modifica array original)
+  console.log("EXERCICE 4 ->", moviesCopy);
+  return moviesCopy
     .map((movie) => movie.title)
     .sort()
     .slice(0, 20);
@@ -37,9 +37,9 @@ function orderAlphabetically(array) {
 
 // Exercise 5: Order by year, ascending
 function orderByYear(array) {
-  const MoviesCopy = [...array];
+  const moviesCopy = [...array];
 
-  MoviesCopy.sort((a, b) => {
+  moviesCopy.sort((a, b) => {
     // Ordenar por año
     if (a.year !== b.year) {
       return a.year - b.year;
@@ -55,13 +55,25 @@ function orderByYear(array) {
     }
     return 0;
   });
-  console.log("EXERCICE 5 ->", MoviesCopy);
-  return MoviesCopy;
+  console.log("EXERCICE 5 ->", moviesCopy);
+  return moviesCopy;
 }
 
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory() {
+function moviesAverageByCategory(array, genre) {
+  let moviesCopy = [...array];
+  moviesCopy = array.filter(movie => {
+    if (typeof (movie.score) !== 'number');
+    else {
+      return movie.genre.includes(genre);
+    }
+  });
 
+  const totalScore = moviesCopy.reduce((accumulator, movie) => accumulator + movie.score, 0);
+  const averageScore = Number((totalScore / moviesCopy.length).toFixed(2));
+
+  console.log(`Average score for category "${genre}": ${averageScore}`);
+  return averageScore;
 }
 
 // Exercise 7: Modify the duration of movies to minutes
